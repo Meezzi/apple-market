@@ -18,4 +18,17 @@ class Product {
     required this.likes,
     required this.chats,
   });
+
+  factory Product.fromCsv(List<String> row) {
+    return Product(
+      imageFile: row[1],
+      title: row[2],
+      description: row[3],
+      seller: row[4],
+      price: int.parse(row[5]),
+      address: row[6],
+      likes: int.parse(row[7]),
+      chats: int.parse(row[8]),
+    );
+  }
 }
