@@ -119,4 +119,11 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
       MaterialPageRoute(builder: (_) => ProductDetailPage(product: product)),
     );
   }
+
+  void _scrollListener() {
+    final shouldShow = _scrollController.offset > 0;
+    if (_showScrollToTopButton != shouldShow) {
+      setState(() => _showScrollToTopButton = shouldShow);
+    }
+  }
 }
