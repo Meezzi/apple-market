@@ -1,4 +1,5 @@
 import 'package:apple_market/data/models/product.dart';
+import 'package:apple_market/features/product/presentation/widgets/product_info.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailPage extends StatelessWidget {
@@ -21,9 +22,12 @@ class ProductDetailPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SellerInfo(product: product),
                 Divider(height: 2, thickness: 2, color: Colors.grey[500]),
+                SizedBox(height: 8),
+                ProductInfo(product: product),
               ],
             ),
           ),
