@@ -41,7 +41,10 @@ class ProductListPage extends ConsumerWidget {
               return ProductCard(
                 onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ProductDetailPage()),
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ProductDetailPage(product: products[index]),
+                  ),
                 ),
                 product: products[index],
               );
