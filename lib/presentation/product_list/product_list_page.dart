@@ -1,5 +1,5 @@
 import 'package:apple_market/data/models/product.dart';
-import 'package:apple_market/features/product/presentation/pages/product_detail_page.dart';
+import 'package:apple_market/presentation/product_detail/product_detail_page.dart';
 import 'package:apple_market/presentation/product_list/widgets/floating_button.dart';
 import 'package:apple_market/presentation/product_list/widgets/product_card.dart';
 import 'package:apple_market/provider/products_provider.dart';
