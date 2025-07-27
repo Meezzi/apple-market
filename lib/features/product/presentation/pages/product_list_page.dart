@@ -29,7 +29,10 @@ class ProductListPage extends ConsumerWidget {
         centerTitle: false,
       ),
       body: asyncProducts.when(
-        data: (products) => ListView.builder(
+        data: (products) => ListView.separated(
+          separatorBuilder: (BuildContext context, int index) {
+            return Divider();
+          },
           itemCount: products.length,
           itemBuilder: (context, index) {
             return ProductCard(product: products[index]);
