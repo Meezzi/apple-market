@@ -1,3 +1,4 @@
+import 'package:apple_market/features/product/presentation/pages/product_detail_page.dart';
 import 'package:apple_market/features/product/presentation/widgets/product_card.dart';
 import 'package:apple_market/provider/products_provider.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,13 @@ class ProductListPage extends ConsumerWidget {
             },
             itemCount: products.length,
             itemBuilder: (context, index) {
-              return ProductCard(product: products[index]);
+              return ProductCard(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProductDetailPage()),
+                ),
+                product: products[index],
+              );
             },
           ),
         ),
