@@ -1,7 +1,7 @@
 import 'package:apple_market/data/models/product.dart';
 import 'package:apple_market/features/product/presentation/pages/product_detail_page.dart';
-import 'package:apple_market/features/product/presentation/widgets/floating_button.dart';
-import 'package:apple_market/features/product/presentation/widgets/product_card.dart';
+import 'package:apple_market/presentation/product_list/widgets/floating_button.dart';
+import 'package:apple_market/presentation/product_list/widgets/product_card.dart';
 import 'package:apple_market/provider/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
