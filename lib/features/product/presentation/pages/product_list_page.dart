@@ -11,7 +11,23 @@ class ProductListPage extends ConsumerWidget {
     final asyncProducts = ref.watch(productsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('르탄동'), centerTitle: false),
+      appBar: AppBar(
+        title: const Text('르탄동'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('알림이 생성되었습니다.'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
+            },
+            icon: const Icon(Icons.notifications_none_rounded),
+          ),
+        ],
+        centerTitle: false,
+      ),
       body: asyncProducts.when(
         data: (products) => ListView.builder(
           itemCount: products.length,
