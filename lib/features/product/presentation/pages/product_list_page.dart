@@ -126,4 +126,11 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
       setState(() => _showScrollToTopButton = shouldShow);
     }
   }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_scrollListener);
+    _scrollController.dispose();
+    super.dispose();
+  }
 }
