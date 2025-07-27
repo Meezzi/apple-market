@@ -37,27 +37,10 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
         ],
         centerTitle: false,
       ),
-      floatingActionButton: _showScrollToTopButton
-          ? Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.grey[300]!, width: 2),
-              ),
-              child: FloatingActionButton(
-                onPressed: () {
-                  _scrollController.animateTo(
-                    0,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeOut,
-                  );
-                },
-                backgroundColor: Colors.white,
-                elevation: 2,
-                shape: const CircleBorder(),
-                child: const Icon(Icons.arrow_upward, color: Colors.grey),
-              ),
-            )
-          : null,
+      floatingActionButton: FloatingButton(
+        showScrollToTopButton: _showScrollToTopButton,
+        scrollController: _scrollController,
+      ),
       body: asyncProducts.when(
         data: (products) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -110,6 +93,45 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => ProductDetailPage(product: product)),
+    );
+  }
+}
+
+class FloatingButton extends StatelessWidget {
+  const FloatingButton({
+    super.key,
+    required bool showScrollToTopButton,
+    required ScrollController scrollController,
+  }) : _showScrollToTopButton = showScrollToTopButton,
+       _scrollController = scrollController;
+
+  final bool _showScrollToTopButton;
+  final ScrollController _scrollController;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedOpacity(
+      opacity: _showScrollToTopButton ? 1.0 : 0.0,
+      duration: const Duration(milliseconds: 200),
+      child: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: Colors.grey[300]!, width: 2),
+        ),
+        child: FloatingActionButton(
+          onPressed: () {
+            _scrollController.animateTo(
+              0,
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeOut,
+            );
+          },
+          backgroundColor: Colors.white,
+          elevation: 2,
+          shape: const CircleBorder(),
+          child: const Icon(Icons.arrow_upward, color: Colors.grey),
+        ),
+      ),
     );
   }
 }
