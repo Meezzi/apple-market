@@ -34,4 +34,28 @@ class Product {
       isLiked: false,
     );
   }
+
+  Product copyWith({
+    String? imageFile,
+    String? title,
+    String? description,
+    String? seller,
+    int? price,
+    String? address,
+    int? likes,
+    int? chats,
+    bool? isLiked,
+  }) {
+    return Product(
+      imageFile: imageFile ?? this.imageFile,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      seller: seller ?? this.seller,
+      price: price ?? this.price,
+      address: address ?? this.address,
+      likes: likes ?? this.likes,
+      chats: chats ?? this.chats,
+      isLiked: isLiked ?? this.isLiked,
+    );
+  }
 }
