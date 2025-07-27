@@ -5,11 +5,15 @@ class ProductBottomBar extends StatelessWidget {
   const ProductBottomBar({
     super.key,
     required this.price,
+    required this.onLikedTap,
     required this.onChatTap,
+    required this.isLiked,
   });
 
   final int price;
+  final VoidCallback? onLikedTap;
   final VoidCallback? onChatTap;
+  final bool isLiked;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,13 @@ class ProductBottomBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Icon(Icons.favorite_border, color: Colors.grey),
+          IconButton(
+            onPressed: onLikedTap,
+            icon: Icon(
+              isLiked ? Icons.favorite : Icons.favorite_border,
+              color: isLiked ? Colors.red : Colors.grey,
+            ),
+          ),
           Text(
             '${formatPrice(price)}원',
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
