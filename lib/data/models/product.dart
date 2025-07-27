@@ -7,6 +7,7 @@ class Product {
   final String address;
   final int likes;
   final int chats;
+  final bool isLiked;
 
   Product({
     required this.imageFile,
@@ -17,6 +18,7 @@ class Product {
     required this.address,
     required this.likes,
     required this.chats,
+    this.isLiked = false,
   });
 
   factory Product.fromCsv(List<String> row) {
@@ -29,6 +31,7 @@ class Product {
       address: row[6],
       likes: int.parse(row[7]),
       chats: int.parse(row[8]),
+      isLiked: false,
     );
   }
 }
