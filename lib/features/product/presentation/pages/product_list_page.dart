@@ -5,11 +5,18 @@ import 'package:apple_market/provider/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProductListPage extends ConsumerWidget {
+class ProductListPage extends ConsumerStatefulWidget {
   const ProductListPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ProductListPage> createState() => _ProductListPageState();
+}
+
+class _ProductListPageState extends ConsumerState<ProductListPage> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  Widget build(BuildContext context) {
     final asyncProducts = ref.watch(productsProvider);
 
     return Scaffold(
@@ -29,7 +36,13 @@ class ProductListPage extends ConsumerWidget {
           border: Border.all(color: Colors.grey[300]!, width: 2),
         ),
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            _scrollController.animateTo(
+              0,
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeOut,
+            );
+          },
           backgroundColor: Colors.white,
           elevation: 2,
           shape: CircleBorder(),
@@ -41,6 +54,7 @@ class ProductListPage extends ConsumerWidget {
         data: (products) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: ListView.separated(
+            controller: _scrollController,
             separatorBuilder: (BuildContext context, int index) {
               return Divider();
             },
@@ -57,6 +71,12 @@ class ProductListPage extends ConsumerWidget {
         error: (err, stack) => Center(child: Text('오류가 발생했습니다.')),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   void showNotificationSnackBar(BuildContext context) {
