@@ -3,15 +3,22 @@ import 'package:apple_market/util/format_price.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key, required this.product, required this.onTap});
+  const ProductCard({
+    super.key,
+    required this.product,
+    required this.onTap,
+    required this.onLongPress,
+  });
 
   final Product product;
   final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
+      onLongPress: onLongPress,
       child: Card(
         child: Row(
           children: [
