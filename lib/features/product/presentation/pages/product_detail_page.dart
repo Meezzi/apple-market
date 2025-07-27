@@ -1,4 +1,5 @@
 import 'package:apple_market/data/models/product.dart';
+import 'package:apple_market/features/product/presentation/widgets/product_bottom_bar.dart';
 import 'package:apple_market/features/product/presentation/widgets/product_info.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,10 @@ class ProductDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('상품 상세')),
+      bottomNavigationBar: ProductBottomBar(
+        price: product.price,
+        onChatTap: () {},
+      ),
       body: Column(
         children: [
           Image.asset(
