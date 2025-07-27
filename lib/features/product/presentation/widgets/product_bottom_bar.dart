@@ -26,9 +26,7 @@ class ProductBottomBar extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
           ),
           ElevatedButton(
-            onPressed: () {
-              // 채팅 버튼 클릭 처리
-            },
+            onPressed: onChatTap,
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(Colors.orange),
               foregroundColor: WidgetStateProperty.all(Colors.white),

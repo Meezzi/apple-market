@@ -14,7 +14,9 @@ class ProductDetailPage extends StatelessWidget {
       appBar: AppBar(title: Text('상품 상세')),
       bottomNavigationBar: ProductBottomBar(
         price: product.price,
-        onChatTap: () {},
+        onChatTap: () {
+          showNotificationSnackBar(context, '준비 중입니다.');
+        },
       ),
       body: Column(
         children: [
@@ -39,6 +41,14 @@ class ProductDetailPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void showNotificationSnackBar(BuildContext context, String content) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(content: Text(content), duration: Duration(seconds: 2)),
+      );
   }
 }
 
