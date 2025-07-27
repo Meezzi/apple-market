@@ -5,9 +5,9 @@ class Product {
   final String seller;
   final int price;
   final String address;
-  final int likes;
-  final int chats;
-  final bool isLiked;
+  int likes;
+  int chats;
+  bool isLiked;
 
   Product({
     required this.imageFile,
@@ -31,7 +31,6 @@ class Product {
       address: row[6],
       likes: int.parse(row[7]),
       chats: int.parse(row[8]),
-      isLiked: false,
     );
   }
 
