@@ -20,7 +20,12 @@ class ProductDetailPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(children: [SellerInfo(product: product)]),
+            child: Column(
+              children: [
+                SellerInfo(product: product),
+                Divider(height: 2, thickness: 2, color: Colors.grey[500]),
+              ],
+            ),
           ),
         ],
       ),
