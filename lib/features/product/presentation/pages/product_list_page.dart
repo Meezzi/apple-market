@@ -23,6 +23,20 @@ class ProductListPage extends ConsumerWidget {
         ],
         centerTitle: false,
       ),
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: Colors.grey[300]!, width: 2),
+        ),
+        child: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Colors.white,
+          elevation: 2,
+          shape: CircleBorder(),
+          child: const Icon(Icons.arrow_upward, color: Colors.grey),
+        ),
+      ),
+
       body: asyncProducts.when(
         data: (products) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
