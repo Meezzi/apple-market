@@ -8,6 +8,18 @@ class ProductDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(title: Text('상품 상세')),
+      body: Column(
+        children: [
+          Image.asset(
+            'assets/product_images/${product.imageFile}.png',
+            width: double.infinity,
+            height: 260,
+            fit: BoxFit.cover,
+          ),
+        ],
+      ),
+    );
   }
 }
