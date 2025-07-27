@@ -73,8 +73,11 @@ class ProductCard extends StatelessWidget {
                       const SizedBox(width: 8),
 
                       ProductStatus(
-                        iconData: Icons.favorite_border,
+                        iconData: product.isLiked
+                            ? Icons.favorite
+                            : Icons.favorite_border,
                         content: '${product.likes}',
+                        iconColor: product.isLiked ? Colors.red : Colors.grey,
                       ),
                     ],
                   ),
@@ -94,16 +97,18 @@ class ProductStatus extends StatelessWidget {
     super.key,
     required this.iconData,
     required this.content,
+    this.iconColor = Colors.grey,
   });
 
   final IconData iconData;
   final String content;
+  final Color iconColor;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(iconData, size: 16),
+        Icon(iconData, size: 16, color: iconColor),
         const SizedBox(width: 4),
         Text(content),
       ],
