@@ -14,6 +14,13 @@ class ProductListPage extends ConsumerStatefulWidget {
 
 class _ProductListPageState extends ConsumerState<ProductListPage> {
   final ScrollController _scrollController = ScrollController();
+  bool _showScrollToTopButton = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_scrollListener);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,26 +37,27 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
         ],
         centerTitle: false,
       ),
-      floatingActionButton: Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: Colors.grey[300]!, width: 2),
-        ),
-        child: FloatingActionButton(
-          onPressed: () {
-            _scrollController.animateTo(
-              0,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeOut,
-            );
-          },
-          backgroundColor: Colors.white,
-          elevation: 2,
-          shape: CircleBorder(),
-          child: const Icon(Icons.arrow_upward, color: Colors.grey),
-        ),
-      ),
-
+      floatingActionButton: _showScrollToTopButton
+          ? Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.grey[300]!, width: 2),
+              ),
+              child: FloatingActionButton(
+                onPressed: () {
+                  _scrollController.animateTo(
+                    0,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeOut,
+                  );
+                },
+                backgroundColor: Colors.white,
+                elevation: 2,
+                shape: const CircleBorder(),
+                child: const Icon(Icons.arrow_upward, color: Colors.grey),
+              ),
+            )
+          : null,
       body: asyncProducts.when(
         data: (products) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -75,8 +83,16 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
 
   @override
   void dispose() {
+    _scrollController.removeListener(_scrollListener);
     _scrollController.dispose();
     super.dispose();
+  }
+
+  void _scrollListener() {
+    final shouldShow = _scrollController.offset > 0;
+    if (_showScrollToTopButton != shouldShow) {
+      setState(() => _showScrollToTopButton = shouldShow);
+    }
   }
 
   void showNotificationSnackBar(BuildContext context) {
