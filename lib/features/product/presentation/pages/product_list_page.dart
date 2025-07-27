@@ -16,14 +16,7 @@ class ProductListPage extends ConsumerWidget {
         title: const Text('르탄동'),
         actions: [
           IconButton(
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('알림이 생성되었습니다.'),
-                  duration: Duration(seconds: 2),
-                ),
-              );
-            },
+            onPressed: () => showNotificationSnackBar(context),
             icon: const Icon(Icons.notifications_none_rounded),
           ),
         ],
@@ -53,6 +46,15 @@ class ProductListPage extends ConsumerWidget {
         ),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text('오류가 발생했습니다.')),
+      ),
+    );
+  }
+
+  void showNotificationSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('알림이 생성되었습니다.'),
+        duration: Duration(seconds: 2),
       ),
     );
   }
