@@ -4,17 +4,22 @@ import 'package:apple_market/features/product/presentation/widgets/product_info.
 import 'package:apple_market/features/product/presentation/widgets/seller_info.dart';
 import 'package:flutter/material.dart';
 
-class ProductDetailPage extends StatelessWidget {
+class ProductDetailPage extends StatefulWidget {
   const ProductDetailPage({super.key, required this.product});
 
   final Product product;
 
   @override
+  State<ProductDetailPage> createState() => _ProductDetailPageState();
+}
+
+class _ProductDetailPageState extends State<ProductDetailPage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('상품 상세')),
       bottomNavigationBar: ProductBottomBar(
-        price: product.price,
+        price: widget.product.price,
         onChatTap: () {
           showNotificationSnackBar(context, '준비 중입니다.');
         },
@@ -23,7 +28,7 @@ class ProductDetailPage extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(
-              'assets/product_images/${product.imageFile}.png',
+              'assets/product_images/${widget.product.imageFile}.png',
               width: double.infinity,
               height: 260,
               fit: BoxFit.cover,
@@ -33,10 +38,10 @@ class ProductDetailPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SellerInfo(product: product),
+                  SellerInfo(product: widget.product),
                   Divider(height: 2, thickness: 2, color: Colors.grey[500]),
                   SizedBox(height: 8),
-                  ProductInfo(product: product),
+                  ProductInfo(product: widget.product),
                 ],
               ),
             ),
