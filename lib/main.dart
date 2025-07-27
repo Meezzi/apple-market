@@ -1,4 +1,4 @@
-import 'package:apple_market/features/product/presentation/pages/product_list_page.dart';
+import 'package:apple_market/presentation/product_list/product_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

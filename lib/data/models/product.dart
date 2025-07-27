@@ -5,8 +5,9 @@ class Product {
   final String seller;
   final int price;
   final String address;
-  final int likes;
-  final int chats;
+  int likes;
+  int chats;
+  bool isLiked;
 
   Product({
     required this.imageFile,
@@ -17,6 +18,7 @@ class Product {
     required this.address,
     required this.likes,
     required this.chats,
+    this.isLiked = false,
   });
 
   factory Product.fromCsv(List<String> row) {
@@ -29,6 +31,30 @@ class Product {
       address: row[6],
       likes: int.parse(row[7]),
       chats: int.parse(row[8]),
+    );
+  }
+
+  Product copyWith({
+    String? imageFile,
+    String? title,
+    String? description,
+    String? seller,
+    int? price,
+    String? address,
+    int? likes,
+    int? chats,
+    bool? isLiked,
+  }) {
+    return Product(
+      imageFile: imageFile ?? this.imageFile,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      seller: seller ?? this.seller,
+      price: price ?? this.price,
+      address: address ?? this.address,
+      likes: likes ?? this.likes,
+      chats: chats ?? this.chats,
+      isLiked: isLiked ?? this.isLiked,
     );
   }
 }
