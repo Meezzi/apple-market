@@ -1,3 +1,4 @@
+import 'package:apple_market/data/models/product.dart';
 import 'package:apple_market/features/product/presentation/pages/product_detail_page.dart';
 import 'package:apple_market/features/product/presentation/widgets/product_card.dart';
 import 'package:apple_market/provider/products_provider.dart';
@@ -32,13 +33,7 @@ class ProductListPage extends ConsumerWidget {
             itemCount: products.length,
             itemBuilder: (context, index) {
               return ProductCard(
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        ProductDetailPage(product: products[index]),
-                  ),
-                ),
+                onTap: () => goToProductDetail(context, products[index]),
                 product: products[index],
               );
             },
@@ -56,6 +51,13 @@ class ProductListPage extends ConsumerWidget {
         content: Text('알림이 생성되었습니다.'),
         duration: Duration(seconds: 2),
       ),
+    );
+  }
+
+  void goToProductDetail(BuildContext context, Product product) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => ProductDetailPage(product: product)),
     );
   }
 }
