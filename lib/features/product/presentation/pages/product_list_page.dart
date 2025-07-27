@@ -46,12 +46,14 @@ class ProductListPage extends ConsumerWidget {
   }
 
   void showNotificationSnackBar(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('알림이 생성되었습니다.'),
-        duration: Duration(seconds: 2),
-      ),
-    );
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        const SnackBar(
+          content: Text('알림이 생성되었습니다.'),
+          duration: Duration(seconds: 2),
+        ),
+      );
   }
 
   void goToProductDetail(BuildContext context, Product product) {
