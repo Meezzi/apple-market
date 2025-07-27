@@ -29,14 +29,17 @@ class ProductListPage extends ConsumerWidget {
         centerTitle: false,
       ),
       body: asyncProducts.when(
-        data: (products) => ListView.separated(
-          separatorBuilder: (BuildContext context, int index) {
-            return Divider();
-          },
-          itemCount: products.length,
-          itemBuilder: (context, index) {
-            return ProductCard(product: products[index]);
-          },
+        data: (products) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: ListView.separated(
+            separatorBuilder: (BuildContext context, int index) {
+              return Divider();
+            },
+            itemCount: products.length,
+            itemBuilder: (context, index) {
+              return ProductCard(product: products[index]);
+            },
+          ),
         ),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text('오류가 발생했습니다.')),
