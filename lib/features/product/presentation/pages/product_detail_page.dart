@@ -19,27 +19,29 @@ class ProductDetailPage extends StatelessWidget {
           showNotificationSnackBar(context, '준비 중입니다.');
         },
       ),
-      body: Column(
-        children: [
-          Image.asset(
-            'assets/product_images/${product.imageFile}.png',
-            width: double.infinity,
-            height: 260,
-            fit: BoxFit.cover,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SellerInfo(product: product),
-                Divider(height: 2, thickness: 2, color: Colors.grey[500]),
-                SizedBox(height: 8),
-                ProductInfo(product: product),
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Image.asset(
+              'assets/product_images/${product.imageFile}.png',
+              width: double.infinity,
+              height: 260,
+              fit: BoxFit.cover,
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SellerInfo(product: product),
+                  Divider(height: 2, thickness: 2, color: Colors.grey[500]),
+                  SizedBox(height: 8),
+                  ProductInfo(product: product),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
